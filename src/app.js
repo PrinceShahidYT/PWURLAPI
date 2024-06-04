@@ -122,7 +122,8 @@ app.get('/:videoId/hls/:quality/main.m3u8', async (req, res) => {
     const { videoId, quality } = req.params;
     const db = await policyModel.find({});
     const main_url = db[0].main_url;
-    const url = `${main_url}https://d1d34p8vz63oiq.cloudfront.net/${videoId}/master.mpd&quality=${quality}`;
+    //const url = `${main_url}https://d1d34p8vz63oiq.cloudfront.net/${videoId}/master.mpd&quality=${quality}`;
+    const url = `https://pw.pwjarvis.tech?v=https://d1d34p8vz63oiq.cloudfront.net/${videoId}/master.mpd&quality=${quality}`;
 
     try {
         const response = await axios.get(url);
