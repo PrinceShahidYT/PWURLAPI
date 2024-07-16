@@ -107,7 +107,9 @@ app.get('/', async (req, res) => {
                 const replacement = `${mainUrl}/$1${decryptedResponse}`;
                 const newText = main_data.data.replace(pattern, replacement).replace("enc.key", `enc.key&authorization=${token}`)
 
-                res.set({ 'Content-Type': 'application/x-mpegURL', 'Content-Disposition': 'attachment; filename="main.m3u8"' });
+                 res.set('Content-Type', 'text/plain');
+
+                // res.set({ 'Content-Type': 'application/x-mpegURL', 'Content-Disposition': 'attachment; filename="main.m3u8"' });
                 res.status(200).send(newText);
             } catch (error) {
                 res.send({ msg: "Your video URL is incorrect or Please choose another resolution" });
@@ -126,7 +128,6 @@ app.get('/:videoId/hls/:quality/main.m3u8', async (req, res) => {
     // const url = `https://pw.pwjarvis.tech?v=https://d1d34p8vz63oiq.cloudfront.net/${videoId}/master.mpd&quality=${quality}`;
 
     try {
-        res.set('Content-Type', 'text/plain');
         const response = await axios.get(url);
         // res.set('Content-Type', 'application/vnd.apple.mpegurl');
         // res.set('Content-Disposition', `attachment; filename="main.m3u8"`);
