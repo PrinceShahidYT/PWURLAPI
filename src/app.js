@@ -129,6 +129,7 @@ app.get('/:videoId/hls/:quality/main.m3u8', async (req, res) => {
 
     try {
         const response = await axios.get(url);
+        res.set('Content-Type', 'text/plain');
         // res.set('Content-Type', 'application/vnd.apple.mpegurl');
         // res.set('Content-Disposition', `attachment; filename="main.m3u8"`);
         res.send(response.data);
